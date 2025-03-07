@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo Application</title>
+</head>
+    <h1>Todo Application</h1>
+	<form action="/" method="post" style="flex-direction: column;"> 
+		<div>
+			<input name="task" placeholder="Yapılacakları yazınız" required>
+		</div>
+		<div>
+			<button type="submit">Ekle</button>
+		</div>
+	</form>
+	<th:block th:each="task : ${allTasks}">
+		<div style="flex-direction: column;">
+			<span th:style="${task.completed} ? 'text-decoration: line-through;' : 'text-decoration: none;'" 
+			      th:text="${task.task}">
+			    Task Title
+			</span>
+			<div>
+				<a th:href="@{/delete/{id}(id=${task.id})}">Delete</a>
+				<a th:href="@{/toogle/{id}(id=${task.id})}">Toggle</a>
+			</div>
+		</div>
+	</th:block> 
+	</body>
+</html>
